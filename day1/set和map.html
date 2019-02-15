@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let setdata = new Set([20,30,20,10,40]);
+        // setdata.add(40)
+        // setdata.clear();
+        setdata.delete(40);
+
+        for(let i of setdata.values()){
+            console.log(i)
+        }
+
+        // let obj = {
+        //     name:'zs',
+        //     []:'array'
+        // }
+
+        let getMap = new Map();
+        getMap.set({name:'zs'},'person');
+        getMap.set(['a','b'],[1,2])
+        getMap.set('hello',{text:'string'})
+        console.log(getMap);
+
+        // for(let key of getMap.keys()){
+        //     console.log(key);
+        // }
+        let data = getMap.entries();
+        console.log(data);
+         console.log(data.next());
+         console.log(data.next());
+         console.log(data.next());
+         console.log(data.next());
+
+        
+         function setIterator(arr){
+            let index = 0;
+            return {
+                next:function(){
+                    return {
+                        value:arr[index++],
+                        done:index>arr.length
+                    }
+                }
+            }
+         }
+
+         let arr1 = setIterator(['a','b','c']);
+         console.log(arr1.next());//{value:'a',done:false}
+         console.log(arr1.next());//{value:'b',done:false}
+         console.log(arr1.next());//{value:'c',done:false}
+         console.log(arr1.next());//{value:undefined,done:true}
+
+         let arr2 = setIterator(['a','b','c']);
+         console.log(arr2.next());//{value:'a',done:false}
+
+
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="wrap">
+        <div class="title">
+            <div>
+                <ul>
+                    <li class="title"></li>
+                </ul>
+            </div>
+            <span class="title"></span>
+        </div>
+        <p>
+            <b class="title"></b>
+        </p>
+    </div>
+    <div class="title">121212</div>
+    <script src="promise.js"></script>
+    <script>
+        function find(classname,parent=document){
+            const els = [];
+            let findChildren = (parent)=>{
+                let children = [...parent.children];
+                if(children.length){
+                    children.forEach(item=>{
+                        if(item.classList.contains(classname)){
+                            els.push(item);
+                        }
+                        findChildren(item);
+                    })
+                }
+            }
+            findChildren(parent);
+            return els;
+        }
+
+        console.log(find('title'));
+    </script>
+</body>
+</html>

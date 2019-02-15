@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //let const class import
+
+        //1.不会变量提升
+        //2.会产生块级作用域
+        //3.在同一作用域下不能出现重复变量
+        //4.es6明确规定在当前作用域下使用let或const命名声明的变量，在声明之前不能进行操作，会形成暂时性死区
+        //5.let和const声明的变量不是顶层对象的属性
+       // console.log(str);
+        //let str  = 'wangzhan';
+        
+        // let arr = ['a','b','c'];
+        // for(let i=0;i<arr.length;i++){
+        //     setTimeout(function(){
+        //         console.log(arr[i]);// 0 1 2
+        //     },100)
+        // }
+
+        
+        // var arr1 = ['a','b','c'];
+        // for(var n=0;n<arr1.length;n++){
+        //     (function(n){
+        //         setTimeout(function(){
+        //             console.log(arr1[n]); // 3 3 3 
+        //         },100)
+        //     })(n)
+        // }
+
+        // if(true){
+        //     let str = 'bawei';
+        // }
+        //console.log(str);
+
+    //    let i = 20;
+    //    for(let i=0;i<10;i++){
+    //        let i=20;
+    //        console.log(i);
+    //    }
+    //    console.log(i);
+
+
+    //    let n = 0;
+    //    function sum(){//暂时性死区开始
+    //       // n++;
+    //        let n = 10; //结束
+    //        console.log(n);
+    //    }
+    //    sum();
+
+    // let num = 10;
+    // alert(window.num);
+
+    //let声明变量 const声明常量
+
+    // const str = [];
+
+    // str.push('八维');
+    
+    // str.splice(0,1);
+    // console.log(str);
+
+    
+    </script>
+</body>
+</html>

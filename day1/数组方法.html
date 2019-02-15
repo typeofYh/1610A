@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text"> <button>搜索</button>
+    <div>
+        <div class="box"></div>
+    </div>
+    <script>
+        const search = document.querySelector('button');
+        const text = document.querySelector('input');
+        const data = [{
+            bookname:'没名',
+            username:'周继愈'
+        },{
+            bookname:'七友',
+            username:'张学友'
+        },{
+            bookname:'吻别',
+            username:'张学友'
+        },{
+            bookname:'政治新闻',
+            username:'人命日报'
+        },{
+            bookname:'昨天下雪了',
+            username:'空间'
+        }]
+        search.onclick = function(){
+            let val = text.value.trim();
+            let res = data.find(function(item){
+                let {bookname,username} = item;
+                return bookname.includes(val) || username.includes(val)
+            });
+            console.log(res);
+        }
+
+       // let arr1 = ['a','b','c','d','e','f'];
+
+        //['a','b','a','b','c','f']
+
+        // function copyWithIn(arr,target,start,end){
+        //     let copyarr = arr.slice(start,end);//['a','b'];
+        //     let i = 0;
+        //     arr.forEach(function(item,index){ //0-5
+        //         if(index>=target && copyarr[i]){
+        //             arr[index] = copyarr[i];
+        //             i++;
+        //         }
+        //     })
+        //     return arr;
+        // }
+
+        // copyWithIn(arr1,2,0,2);
+
+
+        //console.log(arr1.copyWithin(2));
+
+        // let arr1 = new Array(10);
+        // console.log(arr1);
+
+        let arr2 = Array.of(10,123,23,1243);
+        for(let i of arr2){
+            console.log(i);
+        }
+
+        for(let a of 'abc'){
+            console.log(a);
+        }
+
+        let obj = {
+            name:'zs',
+            age:13
+        };
+        //[name=zs,age=13]
+        // for(let key of Object.keys(obj)){
+        //     console.log(key);
+        // }
+        function format(obj){
+           return Object.entries(obj).map(function(item){
+                return item.join('=');
+           }).join('&')
+        }
+        console.log(format(obj));
+        // let div = Array.from(document.querySelectorAll('div'),function(el){
+        //     return Array.from(el.classList);
+        // });
+        // console.log(div);
+
+        
+
+        let arr3 = ['a',[['b'],'c'],[1,2]];
+            //['a','b','c',1,2]
+        console.log(arr3.flat(Infinity));
+        
+
+        function insert(arr,index,val){
+            arr[index] = [val,arr[index]]
+            return arr.flat(Infinity);
+        }
+        //[1,2,[['a','b','c'],3],4,4,5]
+        arr3 = insert([1,2,3,4,4,5],0,['a','b','c']);
+
+
+       console.log( arr3.map(function(item){
+            return [item+1,'新增内容']
+        }).flat());
+    </script>
+</body>
+</html>

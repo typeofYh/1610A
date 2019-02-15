@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   
+    <script>
+        let [tag,[...div]] = ['div',[...document.querySelectorAll('div')]];
+        
+        // let {
+        //     url,//url:url,
+        //     async=true,//async:async=true
+        //     mytype:type='get'
+        // }={
+        //     url:'http://www.baidu.com',
+        //     mytype:'post'
+        // }
+        
+
+        function ajax({
+            url,//url:url,
+            async=true,//async:async=true
+            type='get',
+            data=''
+        }){
+
+            console.log(url,async,type,data);
+
+        }
+
+        ajax({
+            url:'http://www.baidu.com',
+            type:'post'
+        })
+
+        function sum([title,...n]){
+            return title +'='+ n.reduce(function(p,next){
+                return p+next;
+            });
+
+        }
+
+        console.log(sum(['求和',10,20,30,40,50]));
+
+        
+    </script>
+</body>
+</html>
