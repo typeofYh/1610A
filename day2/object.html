@@ -9,8 +9,8 @@
 <body>
     <div id="box">
         <p>次数{count}</p>
-        <button id="add">+</button>
     </div>
+    <button id="add">+</button>
     <!-- <script src="./object.js"></script> -->
     <script>
         
@@ -18,11 +18,27 @@
             count:10
         }
         add.onclick = function(){
-            data.count++;
+            data.count++;  //data.cont = data.cont+1
+            // alert(data.count);
+            // Views(data,'#box');
         }
         Views(data,'#box');
         function Views(data,parent){
-            
+            parent = document.querySelector(parent);
+            let cont = parent.innerHTML;
+            let reg = /{(\w+)}/g;
+            let title = reg.exec(cont)[1];
+            let value = data[title];
+            Object.defineProperty(data,title,{
+                set(val){
+                    value = val;
+                    parent.innerHTML = cont.replace(reg,value);
+                },
+                get(){
+                    return value;
+                }
+            })
+            parent.innerHTML = cont.replace(reg,value);
         }
     </script>
 </body>
