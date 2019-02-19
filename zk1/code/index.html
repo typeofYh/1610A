@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数柱</title>
+    <style>
+        #btn{margin-bottom:20px;}
+        .jump{
+            animation: jump 0.2s ease-in-out 0s 1 alternate both;
+        }
+        @keyframes jump{
+            0%{transform:translateY(0px)}
+            50%{transform:translateY(50px)}
+            100%{transform:translateY(0px)}
+        }
+        #box{
+            display: flex;
+            align-items: flex-end;
+        }
+        #box div{
+            color:#fff;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 3px;
+            margin: 0 1px;
+        }
+    </style>
+</head>
+<body>
+    <div id="btn">
+        <button>添加静态的数柱</button>
+        <button>添加会动的数柱</button>
+        <button>所有会动的数柱依次运动</button>
+        <input type="number" min="1" max="9" />
+    </div>
+    <div id="box"></div>
+    <script src="index.js"></script>
+</body>
+</html>

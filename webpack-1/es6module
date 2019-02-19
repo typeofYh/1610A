@@ -1,0 +1,24 @@
+es6制定模块规范
+默认配置文件：webpcak.config.js
+webpack 模块打包器 根据入口文件依赖产生一个关系视图
+
+1.全局安装webpack
+npm i webpack webpack-cli -g
+
+
+2. webpack配置文件
+{
+    entry:入口文件路径 || {
+        filename:文件路径
+    },
+    output:{
+        filename:输出的文件名,  main.js
+        path:输出路径 dist
+    }
+}
+
+3.运行
+webpack --config=要运行的文件路径
+
+
+6. bebel是javascript的编译器

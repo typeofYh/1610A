@@ -1,0 +1,17 @@
+div{
+    width: 270px;
+    height: 129px;
+    background-image: url(../images/yuanxiao.jpg);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    animation: gifs 6s steps(44);
+}
+
+@keyframes gifs{
+    0%{
+        background-position: 0 0;
+    }
+    100%{
+        background-position: -11880px 0;
+    }
+}

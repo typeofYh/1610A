@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="wrap">
+        <button>从上到下淡入</button>
+        <button>从左到又淡入</button>
+        <button>从中间淡入</button>
+    </div>
+    <script>
+        class Dialog{
+            constructor(parent,options){
+                this.parent = document.querySelector(parent);
+                let defaulte = {
+                    title:'弹窗标题',
+                    content:['确定'],
+                    style:{
+                        width:200,
+                        height:200,
+                        background:"#ccc",
+                        border:'1px solid #000'
+                    }
+                }
+                let style = Object.assign({},defaulte.style,options.style);
+                this.settings = Object.assign({},defaulte,options);
+                this.settings.style = style;
+                this.render();
+            }
+            render(){
+                this.dialogdiv = document.createElement('div');
+                this.dialogdiv.className = 'dialog';
+                let {title,content,style} = this.settings;
+                let html = `
+                    <div style="${
+                        //width:100;key:value
+                        Object.entries(style).map(item=>`${item[0]}:${
+                            typeof item[1] === 'string' ? item[1] : item[1]+'px'
+                        }`).join(';')
+                    }">
+                        <span class="close">&times;</span>
+                        <h2>${title}</h2>
+                        <div class="dialog_btns">
+                            ${
+                                content.map(item=>`<button>${item}</button>`).join('')
+                            }
+                        </div>
+                    </div>
+                `;
+                this.dialogdiv.innerHTML = html;
+                this.parent.append(this.dialogdiv);
+            }
+            on(eventname,ck){
+                switch(eventname){
+                    case 'close':
+                        const close = this.dialogdiv.querySelector('.close');
+                        close.addEventListener('click',(e)=>{
+                            ck.call(this,e);
+                        })
+                    break;
+                }
+            }
+        }
+
+        let dialog = new Dialog("#wrap",{
+            content:['确定','取消'],
+            style:{
+                height:100,
+                background:'#ccc'
+            }
+        })
+
+       
+        dialog.on('close',function(e){
+            console.log(this,e);
+        })
+
+
+        class DragDialog extends Dialog{
+            constructor(parent,options){
+                super(parent,options);
+                this.move();
+            }
+            move(){
+                const dialog = this.dialogdiv.children[0];
+                dialog.onmousedown=(e)=>{
+                    let dialogLeft = e.clientX-dialog.offsetLeft;
+                    let dialogTop = e.clientY-dialog.offsetTop;
+                    document.onmousemove=(e)=>{
+                        dialog.style.left = e.clientX-dialogLeft+"px"
+                        dialog.style.top = e.clientY-dialogTop+"px"
+                    }
+                    
+                }
+                dialog.onmouseup=()=>{
+                    document.onmousemove = null;
+                }
+            }
+        }
+
+        new DragDialog("#wrap",{
+            title:'今天周六，要留作业吗？',
+            content:['确定','取消'],
+            style:{
+                height:100,
+                background:'#ccc',
+                position:"absolute",
+                'user-select':"none",
+            }
+        })
+        
+    // AnimatDialog
+        // new AnimatDialog({
+        //     classname:"fade-to-right"
+        // })
+        // new AnimatDialog({
+        //     classname:"fade-to-bottom"
+        // })
+        // new AnimatDialog({
+        //     classname:"fadeIn"
+        // })
+    </script>
+</body>
+</html>
