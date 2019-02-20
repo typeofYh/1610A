@@ -1,7 +1,7 @@
 import {array} from "./js/array";
 console.log(array(['hello',1,2,3,5,3,'hello']))
 
-import "./css/style.css";
+import "./css/style.scss";
 
 setTimeout(function(){
    console.log(111);

@@ -5,6 +5,9 @@ div{
     background-repeat: no-repeat;
     background-position: 0 0;
     animation: gifs 6s steps(44);
+    span{
+        width: 100px;
+    }
 }
 
 @keyframes gifs{

@@ -1,0 +1,14 @@
+extract-text-webpack-plugin
+注意版本问题下@next版本
+
+1.引入
+2.在执行解析cssloader时调用该对象的extract的方法
+{
+    fallback:要结束执行loader
+    use:解析该模块执行的loader [css-loader,sass-loader]
+}
+
+sass-loader依赖node-sass执行
+
+3.在plugins中调用extract该插件
+

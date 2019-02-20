@@ -1,0 +1,1 @@
+export let string = 'name=zs&age=13'
