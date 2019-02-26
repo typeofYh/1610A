@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul>
+            <li v-for="(item,i) in list" @click="str(i)">{{item.title}}</li>
+        </ul>
+        <input type="text" placeholder="请输入价格" v-model="price">
+        <p v-if="price>=1 && price<=100">普通会员</p>
+        <!--12121-->
+        <p v-else-if="price>100 && price<=200">白银会员</p>
+        <p v-else-if="price>200 && price<=300">黄金会员</p>
+        <p v-else>金额输入有误</p>
+        <div v-cloak>{{classname}}</div>
+    </div>
+    <script src="./vue.js"></script>   
+    <script>
+        let vm = new Vue({
+            el:"#wrap",
+            data:{
+                list:[{
+                    title:'苹果',
+                    price:20
+                },{
+                    title:'梨',
+                    price:30
+                },{
+                    title:'香蕉',
+                    price:10
+                }],
+                price:"",
+                classname:'1610a'
+            },
+            methods:{
+                str(i){
+                    alert(this.list[i].price);
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>

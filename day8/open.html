@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div v-for="item in list">
+            <h2 @click="item.open = !item.open">{{item.title}} <span>{{item.price}}</span></h2>
+            <div v-show="item.open">
+                <div v-for="val in item.cont">
+                    <h3>{{val.date}}</h3>
+                    <p v-for="v in val.list">{{v.title}} <b>{{v.price}}</b></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./data.js"></script>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                list:data.data
+            },
+            created(){
+                this.list.forEach(item=>{
+                    item.price = item.cont.map(v=>v.list.reduce((p,n)=>p.price+n.price)).reduce((p,n)=>p+n);
+                    // item.open = false;
+                    this.$set(item,'open',false);
+                })
+            }
+        })
+    </script>
+</body>
+</html>

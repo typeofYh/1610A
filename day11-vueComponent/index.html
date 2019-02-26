@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-list></my-list>
+        <my-list></my-list>
+        <my-title></my-title>
+        <my-title></my-title><my-title></my-title>
+    </div>
+    <div id="wrap">
+        <my-list></my-list>
+        <my-list />
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+       Vue.component('my-list',{
+            template:`
+                <div>
+                    <h2>标题</h2>
+                    <div>
+                        <img src="https://timgmb02.bdimg.com/timg?searchbox_feed&quality=100&size=w1024&sec=0&di=53cf966702e45dd74c2e0a0b487072b8&src=http%3A%2F%2Ft11.baidu.com%2Fit%2Fu%3D4188274684%2C1847677750%26fm%3D173%26app%3D25%26f%3DJPEG%3Fw%3D218%26h%3D146%26s%3DFB988A08EE640E0B1CB362410300B0E8">
+                        <img src="https://timgmb02.bdimg.com/timg?searchbox_feed&quality=100&size=w1024&sec=0&di=53cf966702e45dd74c2e0a0b487072b8&src=http%3A%2F%2Ft11.baidu.com%2Fit%2Fu%3D4188274684%2C1847677750%26fm%3D173%26app%3D25%26f%3DJPEG%3Fw%3D218%26h%3D146%26s%3DFB988A08EE640E0B1CB362410300B0E8">
+                        <img src="https://timgmb02.bdimg.com/timg?searchbox_feed&quality=100&size=w1024&sec=0&di=53cf966702e45dd74c2e0a0b487072b8&src=http%3A%2F%2Ft11.baidu.com%2Fit%2Fu%3D4188274684%2C1847677750%26fm%3D173%26app%3D25%26f%3DJPEG%3Fw%3D218%26h%3D146%26s%3DFB988A08EE640E0B1CB362410300B0E8">
+                    </div>
+                </div>
+            `
+        })
+        new Vue({
+            el:'#app',
+            data:{
+
+            },
+            components:{
+                'my-title':{
+                    template:'<h2>{{count}} <button @click="count++">+</button></h2>',
+                    data(){
+                        return{
+                            count:10
+                        }
+                    }
+                }
+            }
+        })
+
+        new Vue({
+            el:'#wrap'
+        });
+        
+        
+    </script>
+</body>
+</html>

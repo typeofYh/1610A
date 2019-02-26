@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .checkbox{
+            width: 20px;
+            height: 20px;
+            border-radius: 2px;
+            border:1px solid #ccc;
+            display: inline-block;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        .checkbox.checked{
+            background: pink
+        }
+        .dialog{
+            width: 200px;
+            height: 200px;
+            background: skyblue;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-300%);
+            transition: transform 0.8s;
+        }
+        .dialog.show{
+            transform: translate(-50%,-50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul>
+            <li
+            v-for="(item,i) in list">
+                <span 
+                :class="{checked:item.flag,checkbox:true}"
+                @click="onecheck(i)"></span>
+                <b>{{item.title}}</b>
+            </li>
+        </ul>
+        <div>
+            <span :class="{checked:allflag,checkbox:true}" @click="allcheck"></span> <b>全选</b>
+        </div>
+        <button @click="classname.show=true">从上到下滑入弹窗</button>
+        <div :class="classname"></div>
+    </div>
+    <script src="./vue.js"></script> 
+    <script>
+    let vm =  new Vue({
+            el:'#wrap',
+            data:{
+                classname:{
+                    dialog:true,
+                    show:false
+                },
+                list:[{
+                    title:'1610C',
+                    flag:false
+                },{
+                    title:'1610A',
+                    flag:false
+                },{
+                    title:'1610B',
+                    flag:false
+                }],
+                allflag:false,
+                dialogshow:{
+                    fadeIn:true,
+                    slideUp:true
+                }
+            },
+            methods:{
+                onecheck(index){
+                    this.list[index].flag = !this.list[index].flag
+                    this.allflag = this.list.every(item=>item.flag);
+                },
+                allcheck(){
+                    this.allflag = !this.allflag;
+                    this.list.forEach(item=>item.flag=this.allflag);
+                }
+            }
+        })
+    
+    </script>  
+</body>
+</html>

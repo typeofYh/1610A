@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{aa}}
+        {{reverse}}
+        <p>
+            {{url}}
+        </p>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                name:'zs',
+                sex:'男',
+                age:13,
+                str:'bawei',
+                address:{
+                    name:'百度',
+                    url:'http://www.baidu.com'
+                }
+            },
+            methods:{
+                mes(){
+                    return '姓名：'+this.name+'性别:'+this.sex+'年龄：'+this.age
+                }
+            },
+            //计算属性
+            computed:{
+                // aa(){ //preson.get
+                //     return '姓名：'+this.name+'性别:'+this.sex+'年龄：'+this.age
+                // }
+                aa:{
+                    get(){
+                        return '姓名：'+this.name+'性别:'+this.sex+'年龄：'+this.age
+                    },
+                    set(val){
+                        console.log(val);
+                    }
+                },
+                reverse(){
+                    return this.str.split('').reverse().join('');
+                },
+                url:{
+                    get(){
+                        let {name,url} = this.address;
+                        return name+'-'+url
+                    },
+                    set(val){
+                        let [name,url] = val.split('-');
+                        this.address.name = name;
+                        this.address.url = url;
+                    }
+                }
+            }
+        })
+
+
+    </script>
+</body>
+</html>

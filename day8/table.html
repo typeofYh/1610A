@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .table-title button{
+            background: none;
+            border:none;
+            border:1px solid #ccc;
+            padding: 5px 20px;
+        }
+        .table-title button.active{
+            background: pink;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="table">
+            <div class="table-title">
+                <button 
+                v-for="(item,i) in tablecont"
+                @click="change(i)"
+                :class="{active:i===init}">{{item.title}}</button>
+            </div>
+            <div class="table-content">
+                <ul>
+                    <li v-for="item in tablecont[init].cont">{{item.text}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="./vue.js"></script> 
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                tablecont:[{
+                    title:'新闻',
+                    cont:[{
+                        "text":"明天教委检查"
+                    },{
+                        "text":"明天周五啦"
+                    }]
+                },{
+                    title:'娱乐',
+                    cont:[{
+                        "text":"一达上王者了"
+                    },{
+                        "text":"李仁鹏游戏装上了"
+                    }]
+                }],
+                init:0
+            },
+            methods:{
+                change(i){
+                    this.init = i;
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrap{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <h2>{{classname}}</h2>
+            <div v-on:click.self="console('111')"> 
+                <button v-on:click.self="open=!open">显示隐藏</button>  
+                <div class="wrap" v-show="open"></div>
+            </div>
+            <input type="text" @keyup.esc="text++">
+            <div :class="move">{{text}}</div>
+            <ul>
+                <!-- <li><a :href="urls[0].src">{{urls[0].title}}</a></li>
+                <li><a v-bind:href="urls[1].src">{{urls[1].title}}</a></li> -->
+                <li v-for="(item,i) in urls">
+                    {{i}}:<a :href="item.src">{{item.title}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                classname:'1610A',
+                open:true,
+                text:0,
+                move:"moveaa",
+                urls:[{
+                    title:'百度',
+                    src:'http://www.baidu.com'
+                },{
+                    title:'网易',
+                    src:'http://www.163.com'
+                }]
+            },
+            methods:{
+                console(str){
+                    console.log(str);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

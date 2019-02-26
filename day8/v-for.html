@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(value,key) in preson">
+                <span>{{key}}</span>:<span>{{value}}</span>
+            </li>
+        </ul>
+        <div>
+            <b v-for="(val,i) in num">{{i+val}}</b>
+        </div>
+        <input type="text" placeholder="请输入姓名" v-model="val"> 
+        <!-- <input type="text" :value="vals" @input="vals = $event.target.value"> -->
+        <select v-model="sex">
+            <option v-for="item in options" :value="item.title">{{item.title}}</option>
+        </select>
+        <button @click="add($event,'aa')">添加</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>   
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                preson:{
+                    name:'zs',
+                    age:13
+                },
+                num:"hello",
+                val:"",
+                // vals:"",
+                sex:1,
+                options:[{
+                    title:"女",
+                    value:1
+                },{
+                    title:"男",
+                    value:2
+                }] 
+            },
+            methods:{
+                add(e,str){
+                   alert(`您的姓名为:${this.val};您的性别为:${this.sex}`)
+                }   
+            }
+        })
+    </script> 
+</body>
+</html>

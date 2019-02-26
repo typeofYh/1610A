@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
+		<title>ToDoList—最简单的待办事项列表</title>
+		<meta name="description" content="ToDoList无须注册即可使用，数据存储在用户浏览器的html5本地数据库里，是最简单最安全的待办事项列表应用！" />
+		<link rel="stylesheet" href="index.css">
+	</head>
+	<body>
+        <div class="wrap">
+            <header>
+                <section>
+                    <form id="form" @submit.prevent>
+                        <label for="title">ToDoList</label>
+                        <input type="text" 
+                        id="title" 
+                        name="title" placeholder="添加ToDo" 
+                        required="required" autocomplete="off" 
+                        v-model="titletext"
+                        @keyup.enter.prevent="addtolist"/>
+                    </form>
+                </section>
+            </header>
+            <section>
+                <h2>正在进行 <span id="todocount">{{inglength}}</span></h2>
+                <ol id="todolist" class="demo-box">
+                    <li draggable="true" v-for="(item,i) in ing">
+                        <input type="checkbox" :checked="false"
+                        @click="addDone(i)">
+                        <p id="p-0">{{item.title}}</p>
+                        <a href="javascript:;">-</a>
+                    </li>
+                </ol>
+                <h2>已经完成 <span id="donecount">{{end.length}}</span></h2>
+                <ul id="donelist">
+                    <li draggable="true" v-for="(item,i) in end">
+                        <input type="checkbox" :checked="true">
+                        <p id="p-0">{{item.title}}</p>
+                        <a href="javascript:;">-</a>
+                    </li>
+                </ul>
+            </section>
+            <footer>
+                Copyright &copy; 2014 todolist.cn <a href="javascript:;">clear</a>
+            </footer>
+        </div>
+		<script type="text/javascript" src="./vue.js"></script>
+    </body>
+    <script>
+        let vm = new Vue({
+            el:'.wrap',
+            data:{
+                titletext:"",
+                ing:[],
+                end:[]
+            },
+            methods:{
+                addtolist(){
+                    if(this.titletext === ''){
+                        return ;
+                    }
+                    this.ing.push({
+                        title:this.titletext
+                    })
+                    this.titletext = '';
+                },
+                addDone(ind){
+                    let data = this.ing[ind];
+                    this.end.push(data);
+                    this.ing.splice(ind,1);
+                }
+            },
+            computed:{
+                inglength(){
+                    return this.ing.length;
+                }
+            },
+            
+        })
+    
+    </script>
+</html>
