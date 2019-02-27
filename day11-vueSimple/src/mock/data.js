@@ -1,0 +1,20 @@
+export default [
+    {
+        title:'地址',
+        icon:'address',
+        tip:'八维',
+        number:'-'
+    },
+    {
+        title:'QQ',
+        icon:'qq',
+        tip:'-',
+        number:'qq账号...'
+    },
+    {
+        title:'二维码',
+        icon:'ewm',
+        tip:'图片地址...',
+        number:'-'
+    }
+]
