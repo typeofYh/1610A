@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="icon">
         <span :class="classname"></span>
         <b>{{tip}}</b>
     </div>
@@ -14,14 +14,17 @@ export default {
 </script>
 
 <style scoped>
-div,span{
+div.icon,span{
     display: inline-block;
     width: 50px;
     height: 50px;
     line-height: 50px;
 }
-div{
+div.icon{
     position: relative;
+}
+span{
+    border-radius: 50%;
 }
 span.address{
     background: red;
@@ -35,11 +38,16 @@ span.ewm{
 b{
     display: none;
     position: absolute;
-    right:10;
+    right:60px;
+    min-width: 100px;
+    height: 30px;
+    line-height: 30px;
+    top:50%;
+    transform: translateY(-50%);
     background: rgba(0,0,0,.8);
     color:#fff;
 }
-div:hover b{
+div.icon:hover b{
     display: block;
 }
 </style>

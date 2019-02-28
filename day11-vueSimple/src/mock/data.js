@@ -1,20 +1,20 @@
 export default [
     {
-        title:'地址',
-        icon:'address',
-        tip:'八维',
-        number:'-'
+        title:'皇冠粉款',
+        price:238,
+        tip:'乳脂奶油，戚风蛋糕胚，时令水果，1-3送达。',
+        img:"https://fuss10.elemecdn.com/9/32/18afc3ed83b7768d96b3766b47e19jpeg.jpeg?imageMogr/format/webp/thumbnail/!140x140r/gravity/Center/crop/140x140/"
     },
     {
-        title:'QQ',
-        icon:'qq',
-        tip:'-',
-        number:'qq账号...'
+        title:'皇冠粉款',
+        price:134,
+        tip:'乳脂奶油，戚风蛋糕胚，时令水',
+        img:"https://fuss10.elemecdn.com/9/32/18afc3ed83b7768d96b3766b47e19jpeg.jpeg?imageMogr/format/webp/thumbnail/!140x140r/gravity/Center/crop/140x140/"
     },
     {
-        title:'二维码',
-        icon:'ewm',
-        tip:'图片地址...',
-        number:'-'
+        title:'皇冠粉款',
+        price:222,
+        tip:'乳脂奶油，1-3送达。',
+        img:"https://fuss10.elemecdn.com/9/32/18afc3ed83b7768d96b3766b47e19jpeg.jpeg?imageMogr/format/webp/thumbnail/!140x140r/gravity/Center/crop/140x140/"
     }
 ]

@@ -1,40 +1,25 @@
 <template>
     <div>
-        <header>
-            <button @click="open=true">新增</button>
-            <ul v-show="open">
-                <li v-for="(item,i) in list"
-                :key="i"
-                @click="addlist(i)">{{item.title}}</li>
-            </ul>
-        </header>
         <div>
-            <icon v-for="(item,i) in checklist"
+            <MyList v-for="(item,i) in shopcar"
             :key="i"
+            :title="item.title"
             :tip="item.tip"
-            :classname="item.icon"></icon>
+            :price="item.price"
+            :img="item.img"></MyList>
         </div>
     </div>
 </template>
 <script>
-import list from './mock/data'
-import icon from './components/icon';
+import MyList from './components/list';
+import shopcar from './mock/data';
 export default {
-    data(){
-        return {
-            list,
-            open:false,
-            checklist:[]
-        }
-    },
     components:{
-        icon
+        MyList
     },
-    methods:{
-        addlist(index){
-            this.open = false;
-            this.checklist.push(this.list[index]);
-            console.log(this.checklist);
+    data(){
+        return{
+            shopcar
         }
     }
 }
