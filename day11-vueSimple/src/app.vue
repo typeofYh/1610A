@@ -11,52 +11,66 @@
             :count="item.count"></MyList>
         </div>
         <footer>
-            <div class="caricon"><span class="count">{{sumcount}}</span></div>
+            <transition>
+                <MyDialog v-if="dialogopen"
+                :localdata="localdata"></MyDialog>
+            </transition>
+            <div class="caricon" @click="dialogopen=!dialogopen"><span class="count" v-if="sumcount">{{sumcount}}</span></div>
             <b>总价：<span style="color:red">{{sumprice}}</span></b>
         </footer>
     </div>
+    
 </template>
 <script>
 import MyList from './components/list';
 import shopcar from './mock/data';
+import MyDialog from './components/dialog';
 export default {
     components:{
-        MyList
+        MyList,
+        MyDialog
     },
     data(){
         return{
             shopcar,
             sumcount:0,
-            sumprice:0
+            sumprice:0,
+            dialogopen:false,
+            localdata:null
         }
     },
     created(){
-        let localdata = JSON.parse(localStorage.getItem('shopcar')) || [];
-        //一进入页面获取本地存储的数据 设置默认数量
-        this.shopcar.forEach(item=>{
-            let obj = localdata.find(v=>v.id===item.id);
-            this.$set(item,'count',obj ? obj.count : 0);
-            this.sumcount += item.count;
-            this.sumprice += item.count * item.price;
-        })
+        this.localdata = JSON.parse(localStorage.getItem('shopcar')) || [];
+        this.changecount();
         // console.log(this.shopcar);
         //点击加减修改本地存储
         this.$bus.$on('addCar',data=>{
-            let index = localdata.findIndex(item=>item.id===data.id);
+            let index = this.localdata.findIndex(item=>item.id===data.id);
             if(index === -1){
-                localdata.push(data);
+                this.localdata.push(data);
             }else{
-                localdata.splice(index,1,data);
+                if(data.count===0){
+                    this.localdata.splice(index,1)
+                }else{
+                    this.localdata.splice(index,1,data)
+                }
             }
-            localStorage.setItem('shopcar',JSON.stringify(localdata));
-            //遍历localdata
+            localStorage.setItem('shopcar',JSON.stringify(this.localdata));
+            this.changecount();
+        })
+    },
+    methods:{
+        changecount(){
+            //一进入页面获取本地存储的数据 设置默认数量
             this.sumcount = 0;
             this.sumprice = 0;
-            localdata.forEach(item=>{
+            this.shopcar.forEach(item=>{
+                let obj = this.localdata.find(v=>v.id===item.id);
+                this.$set(item,'count',obj ? obj.count : 0);
                 this.sumcount += item.count;
                 this.sumprice += item.count * item.price;
             })
-        })
+        }
     }
 }
 </script>
@@ -66,6 +80,19 @@ export default {
     margin: 0;
     list-style: none;
     box-sizing: border-box;
+}
+.v-enter,.v-leave-to{
+    transform: translateY(50%);
+    opacity: 0;
+    visibility: hidden;
+}
+.v-enter-active,.v-leave-active{
+    transition: all 0.5s
+}
+.v-enter-to,.v-leave{
+    transform: translateY(0);
+    visibility: visible;
+    opacity: 1;
 }
 body,html,#app{
     width: 100%;

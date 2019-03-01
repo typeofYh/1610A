@@ -16,6 +16,12 @@ export default {
             count:0
         }
     },
+    watch:{
+        num(val){
+           this.count = this.num;
+           this.open = this.count > 0; 
+        }
+    },
     created(){
         this.count = this.num;
         this.open = this.count > 0;
