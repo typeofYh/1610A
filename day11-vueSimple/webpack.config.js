@@ -1,6 +1,11 @@
 var path = require('path')
 var webpack = require('webpack')
 var Mock = require('mockjs');
+const bodyParser = require('body-parser');
+const {
+  readFileSync,
+  existsSync
+} = require('fs');
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -9,8 +14,7 @@ module.exports = {
     filename: 'build.js'
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.css$/,
         use: [
           'vue-style-loader',
@@ -72,7 +76,7 @@ module.exports = {
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@':path.resolve('src')
+      '@': path.resolve('src')
     },
     extensions: ['*', '.js', '.vue', '.json']
   },
@@ -80,19 +84,44 @@ module.exports = {
     historyApiFallback: true,
     noInfo: true,
     overlay: true,
-    after(app){
-      app.get('/api/list',(req,res,next)=>{
-          res.send(Mock.mock({
-              'list|10':[
-                  {
-                      'img':'@image',
-                      'title':'@title',
-                      'name':'@cname',
-                      'id|+1':0
-                  }
-              ]
-          }))
+    after(app) {
+	  app.use(bodyParser.json())
+	  app.use(bodyParser.urlencoded({extended:false}))
+      app.get('/api/home', (req, res) => {
+        res.send(readFileSync(path.resolve('src/mock/index/home.json')))
+      });
+      app.get('/api/bookshelf', (req, res) => {
+        res.send(readFileSync(path.resolve('src/mock/index/recommend1.json')))
       })
+      app.get('/api/detail', (req, res) => {
+        let {
+          bookid
+        } = req.query;
+        let filename = path.resolve('src/mock/detail/' + bookid + '.json');
+        if (existsSync(filename)) {
+          res.send(readFileSync(filename))
+        } else {
+          res.send({
+            code: 0,
+            mas: '暂无该书的数据'
+          })
+        }
+	  });
+	  app.post('/api/login',(req,res)=>{
+		  let {user,pwd} = req.body;
+		  if(user==='zs'&&pwd==='1234'){
+			  res.send({
+				  code:1,
+				  mes:'success',
+				  user
+			  })
+		  }else{
+			res.send({
+				code:0,
+				mes:'用户名或密码输入有误'
+			})
+		  }
+	  })
     }
   },
   performance: {

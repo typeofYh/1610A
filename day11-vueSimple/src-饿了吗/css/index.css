@@ -1,0 +1,26 @@
+.index{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.index main{
+    flex:1;
+    overflow: auto;
+}
+.index footer{
+    width: 100%;
+    height: 50px;
+    background: skyblue;
+    color:#fff;
+    display: flex;
+    line-height: 50px;
+}
+.index footer a{
+    flex:1;
+    text-align: center;
+}
+.index footer a.router-link-exact-active{
+    color:#fff;
+}

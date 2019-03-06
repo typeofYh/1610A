@@ -1,0 +1,42 @@
+/
+首页
+/order
+订单
+/prefile
+我的
+/discover
+发现
+spa 
+
+hash # 
+history pushstate
+
+不会重载整个页面
+
+1.下载vue-router
+2.使用vue插件时要注册插件
+Vue.use()
+3.在vue实例中挂载router的配置对象 通过router属性
+router的配置对象 new VueRouter({
+    mode:模式 hash history,
+    routes:[
+        {
+            path:url地址,
+            component:视图组件
+        }
+    ]
+})
+
+4.vue-router 提供两个全局组件
+    <router-view></router-view> 视图出口
+    <router-link to></router-link> a标签 to属性是required
+
+5. router 全局路由对象 
+push() 跳转并且添加历史记录
+replace() 跳转，不会添加历史记录 替换当前访问记录
+
+
+6.组件内导航守卫函数
+
+beforeRouteUpdate(to,from,next)
+

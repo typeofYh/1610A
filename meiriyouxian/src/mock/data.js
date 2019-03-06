@@ -1,0 +1,29 @@
+export default [{
+    name:"鸡胗",
+    price:3,
+    oldprice:3.5,
+    info:'小包装',
+    img:'shop1.png',
+    id:0
+},{
+    name:"鸡腿",
+    price:4,
+    oldprice:4.5,
+    info:'小包装',
+    img:'shop2.png',
+    id:1
+},{
+    name:"玉米",
+    price:4,
+    oldprice:5.5,
+    info:'小包装',
+    img:'shop3.png',
+    id:2
+},{
+    name:"火腿",
+    price:8,
+    oldprice:8.5,
+    info:'小包装',
+    img:'shop1.png',
+    id:3
+}]
